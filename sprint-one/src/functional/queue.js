@@ -9,23 +9,23 @@ var Queue = function() {
   someInstance.enqueue = function(value) {
     var key;
     var val = value;
-    var sizes = Object.keys(storage).length;
+    var queueSize = Object.keys(storage).length;
     if (_.isEmpty(storage)) {
       key = 1;
       storage[key] = val;
     } else {
-      key = sizes + 1;
+      key = queueSize + 1;
       storage[key] = val;
     }
   };
 
   someInstance.dequeue = function() {
-    var sizes = Object.keys(storage).length;
+    var queueSize = Object.keys(storage).length;
     var returnVal = storage[1];
-    for (var i = 1; i < sizes; i++) {
+    for (var i = 1; i < queueSize; i++) {
       storage[i] = storage[i + 1];
     }
-    delete storage[sizes];
+    delete storage[queueSize];
     return returnVal;
   };
 
