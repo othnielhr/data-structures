@@ -16,7 +16,7 @@ var queueMethods = {
     this.back++;
   },
   dequeue: function() {
-    if(this.front < this.back) {
+    if (this.front < this.back) {
       var val = this.storage[this.front];
       delete this.storage[this.front];
       this.front++;
