@@ -107,14 +107,18 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+  for (var i = 0; i < this.newGraph.length; i++) {
+    cb(this.newGraph[i].value);
+  }
 };
 
 /*
  * Complexity: What is the time complexity of the above functions?
+time complexity for addNode() = constant time O(1);
+time complexity for contains() = linear time O(n);
+time complexity for removeNode() = quadratic time O(n^2);
+time complexity for hasEdge() = linear time O(n);
+time complexity for addEdge() = linear time O(n);
+time complexity for removeEdge() = linear time O(n);
+time complexity for forEachNode() = linear time O(n);
  */
-
-/* newGraph = [{value:1, TN: null, FN: null},{value:2, TN: null, FN: null},{value:3, TN: null, FN: null}]
-addNode(1)
-addNode(2)
-addNode(3)
-addEdge(3, 2) */
