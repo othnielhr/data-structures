@@ -7,31 +7,30 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.set(index, v);
-  // if (this._storage.get(index) === undefined) {
-  //   this._storage.set(index, node);
-  // } else {
-  //   if (this._storage.get(index).key === k) {
-  //     this._storage.set(index, node);
-  //   } else {
-  //     for (var i = 0; i < this._storage.get(index).length; i++) {
-  //       if (this._storage.get(index).next === null) {
-  //         this._storage.get(index).next = node;
-  //       }
-  //     }
-  //   }
-  // }
+  if (this._storage.get(index) === undefined) {
+    var bucket = [];
+    bucket.push([k, v]);
+    this._storage.set(index, bucket);
+  } else {
+    this._storage.get(index).push([k, v]);
+  }
+  // this._storage.set(index, v);
 };
 
 HashTable.prototype.retrieve = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  return this._storage.get(index);
-  // for (key in this._storage.get(index)) {
-  //   if (key === k) {
-  //     return this._storage.get(index).value;
-  //   } else if (this._storage.get(index).next !== null) {
-  //   }
-  // }
+  //go to index
+  for (var i = 0; i < this._storage.get(index).length; i++) {
+    if (this._storage.get(index)[i][0] === k) {
+      return this._storage.get(index)[i][1];
+    }
+  }
+  //loop through the bucket at that index
+  //compare each 0th element to the input key
+  //if we find the key
+    //return the value (element at index 1 of current tuple)
+    
+  // return this._storage.get(index);
 };
 
 HashTable.prototype.remove = function(k) {
@@ -47,6 +46,3 @@ HashTable.prototype.remove = function(k) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
-
-//   a          b          c
-// [{1: asdf}, {2: qwer}, {1: zxcv}]
