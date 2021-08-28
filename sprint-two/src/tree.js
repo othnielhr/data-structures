@@ -5,7 +5,6 @@ var Tree = function(value) {
   // your code here
   newTree.children = []; // fix me
   _.extend(newTree, treeMethods);
-
   return newTree;
 };
 
@@ -36,10 +35,32 @@ treeMethods.contains = function(target) {
   return hasThis;
 };
 
+treeMethods.changeChild = function(targetNode, newValue) {
+  /* if target is not within tree, return 'target not found'
+     else iterate thru the tree
+       if current value is equal to target
+         current value equals new value*/
+  if (!this.contains(targetNode)) {
+    return 'target not found!';
+  } else {
+    if (this.value === targetNode) {
+      this.value = newValue;
+    }
+    if (this.children.length > 0) {
+      console.log('it has children');
+      for (var i = 0; i < this.children.length; i++) {
+        console.log('child', this.children);
+        this.children[i].changeChild(targetNode, newValue);
+      }
+    }
+  }
+};
+
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
 time complexity for addChild = constant, O(1);
 time complexity for contains = linear, O(n);
- */
+time complexity for changeChild = linear, O(n);
+*/
