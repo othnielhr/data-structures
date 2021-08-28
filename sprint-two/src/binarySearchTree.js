@@ -3,13 +3,16 @@ var BinarySearchTree = function(value) {
   newTree.value = value;
   newTree.left = null;
   newTree.right = null;
+  newTree.count = 1;
 
   return newTree;
 };
 BinarySearchTree.newTreeMaker = {};
 
 BinarySearchTree.newTreeMaker.insert = function(value) {
-  if (value > this.value) {
+  if (value === this.value) {
+    this.count++;
+  } else if (value > this.value) {
     if (this.right === null) {
       var newTreeNode = BinarySearchTree(value);
       this.right = newTreeNode;

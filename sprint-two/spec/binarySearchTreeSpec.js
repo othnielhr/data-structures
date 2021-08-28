@@ -20,6 +20,15 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.right.left.value).to.equal(6);
   });
 
+  it('should increment the count for the node in the tree if value exists already', function() {
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(2);
+    expect(binarySearchTree.left.right.value).to.equal(2);
+    expect(binarySearchTree.left.right.count).to.equal(3);
+  });
+
   it('should have a working "contains" method', function() {
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);
