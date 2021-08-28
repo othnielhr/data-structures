@@ -36,9 +36,13 @@ HashTable.prototype.retrieve = function(k) {
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  this._storage.each(function(item1, item2, item3) {
-    if (item2 === index) {
-      item3.splice(item2);
+  this._storage.each(function(bucket, storageIndex, wholeStorage) {
+    if (storageIndex === index) {
+      for (var i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === k) {
+          bucket.splice(i, 1);
+        }
+      }
     }
   });
 };
@@ -48,5 +52,5 @@ HashTable.prototype.remove = function(k) {
  * Complexity: What is the time complexity of the above functions?
  * insert = constant time
  * retrieve = constant time
- * remove = constant time
+ * remove = linear time
  */

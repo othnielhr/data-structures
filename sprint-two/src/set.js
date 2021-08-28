@@ -20,6 +20,8 @@ setPrototype.contains = function(item) {
 setPrototype.remove = function(item) {
   if (this._storage[item]) {
     delete this._storage[item];
+  } else {
+    return 'that value was not present in the set';
   }
 };
 
@@ -27,5 +29,5 @@ setPrototype.remove = function(item) {
  * Complexity: What is the time complexity of the above functions?
 time complexity for add() = constant time O(1);
 time complexity for contains() = constant time O(1);
-time complexity for remove() = constant time O(1); 
+time complexity for remove() = constant time O(1);
  */

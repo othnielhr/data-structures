@@ -24,4 +24,8 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('should return an error message if you try to remove values that are not in the set', function() {
+    expect(set.remove('Trey Anastasio')).to.equal('that value was not present in the set');
+  });
+
 });

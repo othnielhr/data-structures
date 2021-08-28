@@ -63,6 +63,9 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
+  if (!(this.contains(fromNode) && this.contains(toNode))) {
+    return 'at least one of your inputs is not present in the graph';
+  }
   for (var i = 0; i < this.newGraph.length; i++) {
     if (this.newGraph[i].value === fromNode) {
       this.newGraph[i].edges.push(toNode);

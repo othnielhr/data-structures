@@ -68,4 +68,13 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should throw an error when adding an edge if either node is not present in the graph', function() {
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.addNode(6);
+    expect(graph.addEdge(1, 4)).to.equal('at least one of your inputs is not present in the graph');
+    expect(graph.addEdge(1, 2)).to.equal('at least one of your inputs is not present in the graph');
+    expect(graph.addEdge(6, 2)).to.equal('at least one of your inputs is not present in the graph');
+  });
 });
